@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+X-Nemo-Application-Type=silica-qt5
+Name=Barcelona iBus
+Icon=harbour-barcelona-ibus
+Exec=harbour-barcelona-ibus
