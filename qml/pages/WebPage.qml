@@ -4,6 +4,7 @@ import Sailfish.Silica 1.0
 
 Page {
     id: page
+    property alias pageUrl: webView.url
     SilicaWebView {
         id: webView
 

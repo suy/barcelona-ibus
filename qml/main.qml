@@ -5,6 +5,12 @@ import "cover"
 
 ApplicationWindow
 {
-    initialPage: Component { WebPage { } }
+    initialPage: Component { ChooserPage { } }
     cover: CoverPage {}
+
+	Component.onCompleted: {
+		pageStack.pushAttached(webPage);
+	}
+
+	WebPage {id: webPage}
 }
