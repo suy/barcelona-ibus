@@ -12,8 +12,8 @@ Page {
 
         experimental.userAgent: "Opera/9.80 (J2ME/MIDP; Opera Mini/9 (Compatible; MSIE:9.0; iPhone; BlackBerry9700; AppleWebKit/24.746; U; en) Presto/2.5.25 Version/10.54"
         // For this page, a super sized font is OK. Default are 16 and 0.
-        experimental.preferences.defaultFontSize: applicationActive? 16 : 26
-        experimental.preferences.minimumFontSize: applicationActive? 12 : 24
+        experimental.preferences.defaultFontSize: applicationActive? 20 : 30
+        experimental.preferences.minimumFontSize: applicationActive? 16 : 28
 
         ProgressCircle {
             value: webView.loadProgress / 100
