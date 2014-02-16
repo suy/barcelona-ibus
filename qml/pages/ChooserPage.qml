@@ -22,7 +22,13 @@ Page {
 			id: backgroundItem
 			width: ListView.view.width
 			Label {
-				text: qsTr("Stop %1. Bus %2.").arg(stop).arg(bus)
+				text: {
+					if (bus !== undefined) {
+						qsTr("Stop %1. Bus %2.").arg(stop).arg(bus)
+					} else {
+						qsTr("Stop %1.").arg(stop)
+					}
+				}
 				x: Theme.paddingSmall
 				anchors.verticalCenter: parent.verticalCenter
 				height: Theme.itemSizeSmall
