@@ -6,7 +6,8 @@ import "cover"
 ApplicationWindow
 {
     initialPage: Component { ChooserPage { } }
-    cover: CoverPage {}
+    // cover: CoverPage {}
+	cover: undefined
 
 	Component.onCompleted: {
 		pageStack.pushAttached(webPage);

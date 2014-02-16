@@ -11,6 +11,9 @@ Page {
         url: "http://tmb.cat/mobile"
 
         experimental.userAgent: "Opera/9.80 (J2ME/MIDP; Opera Mini/9 (Compatible; MSIE:9.0; iPhone; BlackBerry9700; AppleWebKit/24.746; U; en) Presto/2.5.25 Version/10.54"
+        // For this page, a super sized font is OK. Default are 16 and 0.
+        experimental.preferences.defaultFontSize: 24
+        experimental.preferences.minimumFontSize: 22
 
         ProgressCircle {
             value: webView.loadProgress / 100
