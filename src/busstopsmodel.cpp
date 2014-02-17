@@ -14,6 +14,8 @@ BusStopsModel::BusStopsModel(QObject *parent) :
     //     {"", "0534", ""},
     //     {"", "0534", "17"},
     // };
+    // save();
+    // return;
 
     QSettings settings;
 

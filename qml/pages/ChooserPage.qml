@@ -15,6 +15,7 @@ Page {
 		header: PageHeader { title: qsTr("Configured Stops")}
 
 		ViewPlaceholder {
+			// FIXME: only works as a binding if it's a property.
 			enabled: stopsModel.rowCount() === 0
 			text: qsTr("Add bus stops from the menu")
 		}
@@ -53,11 +54,13 @@ Page {
 					MenuItem {
 						text: qsTr("Delete")
 						onClicked: stopsModel.removeRows(index);
-						// Cannot call method 'removeRows' of undefined
+						// Possible bug in Silica? Got "Cannot call method
+						// 'removeRows' of undefined", but only with timeouts.
+						// Immediately, the call succeeds.
 						// onClicked: {
 						//     remorseAction(qsTr("Deleting"), function() {
 						//         stopsModel.removeRows(index);
-						//     })
+						//     }, 500);
 						// }
 					}
 				}
