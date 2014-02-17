@@ -9,9 +9,10 @@
 TARGET = harbour-barcelona-ibus
 
 QT = core gui qml quick
-CONFIG += sailfishapp
+CONFIG += sailfishapp c++11
 
-SOURCES += src/main.cpp
+SOURCES += src/main.cpp src/busstopsmodel.cpp
+HEADERS += src/busstopsmodel.h
 
 OTHER_FILES += qml/main.qml \
     qml/cover/CoverPage.qml \

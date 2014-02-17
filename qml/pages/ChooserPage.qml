@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import My.BusStopsModel 0.1
 
 Page {
     id: page
@@ -9,7 +10,7 @@ Page {
 	SilicaListView {
 		id: stopsList
 		anchors.fill: parent
-		model: stopsModel
+		model: BusStopsModel {id: stopsModel}
 
 		header: PageHeader { title: qsTr("Configured Stops")}
 
@@ -18,29 +19,25 @@ Page {
 			text: qsTr("Add bus stops from the menu")
 		}
 
-		delegate: BackgroundItem {
-			id: backgroundItem
-			width: ListView.view.width
+		delegate: ListItem {
+			id: listItem
+			menu: contextMenuComponent
+			contentHeight: Theme.itemSizeMedium
+			ListView.onAdd:    AddAnimation    { target: listItem }
+			ListView.onRemove: RemoveAnimation { target: listItem }
+
 			Label {
+				id: entryLabel
 				text: {
-					if (bus !== undefined) {
-						qsTr("Stop %1. Bus %2.").arg(stop).arg(bus)
-					} else {
-						qsTr("Stop %1.").arg(stop)
-					}
+					name? name: bus?
+					qsTr("Stop %1. Bus %2.").arg(stop).arg(bus) :
+					qsTr("Stop %1.").arg(stop)
 				}
-				x: Theme.paddingSmall
-				anchors.verticalCenter: parent.verticalCenter
-				height: Theme.itemSizeSmall
-				width: page.width - 2*Theme.paddingSmall
+				x: Theme.paddingLarge
 				font.pixelSize: Theme.fontSizeMedium
-				font.bold: current === true
-				color: current === true? Theme.secondaryColor: Theme.primaryColor
 				truncationMode: TruncationMode.Fade
 			}
 			onClicked: {
-				current=true; // FIXME: doesn't work
-
 				var url;
 				if (bus === undefined) {
 					url = stopUrl.arg(stop);
@@ -50,32 +47,18 @@ Page {
 				webPage.pageUrl = url;
 				pageStack.navigateForward(PageStackAction.Animated);
 			}
-
-			ListView.onAdd:    AddAnimation    { target: backgroundItem }
-			ListView.onRemove: RemoveAnimation { target: backgroundItem }
 		}
 
 
-		ListModel {
-			id: stopsModel
-			ListElement {
-				stop: "1019"
-				current: false
-			}
-			ListElement {
-				stop: "1019"
-				bus: "60"
-				current: false
-			}
-			ListElement {
-				stop: "1019"
-				bus: "73"
-				current: false
-			}
-			ListElement {
-				stop: "71"
-				bus: "60"
-				current: false
+		Component {
+			id: contextMenuComponent
+			ContextMenu {
+				MenuItem {
+					text: qsTr("Edit")
+				}
+				MenuItem {
+					text: qsTr("Delete")
+				}
 			}
 		}
 	}
