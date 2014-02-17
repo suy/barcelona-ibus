@@ -43,17 +43,23 @@ Page {
                     stopUrl.arg(stop);
 				pageStack.navigateForward(PageStackAction.Animated);
 			}
-		}
 
-
-		Component {
-			id: contextMenuComponent
-			ContextMenu {
-				MenuItem {
-					text: qsTr("Edit")
-				}
-				MenuItem {
-					text: qsTr("Delete")
+			Component {
+				id: contextMenuComponent
+				ContextMenu {
+					MenuItem {
+						text: qsTr("Edit")
+					}
+					MenuItem {
+						text: qsTr("Delete")
+						onClicked: stopsModel.removeRows(index);
+						// Cannot call method 'removeRows' of undefined
+						// onClicked: {
+						//     remorseAction(qsTr("Deleting"), function() {
+						//         stopsModel.removeRows(index);
+						//     })
+						// }
+					}
 				}
 			}
 		}
