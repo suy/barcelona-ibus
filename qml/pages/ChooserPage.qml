@@ -15,7 +15,7 @@ Page {
 		header: PageHeader { title: qsTr("Configured Stops")}
 
 		ViewPlaceholder {
-			enabled: stopsModel.count === 0
+			enabled: stopsModel.rowCount() === 0
 			text: qsTr("Add bus stops from the menu")
 		}
 

@@ -25,7 +25,7 @@ class BusStopsModel : public QAbstractListModel
         }
 
         QVariant data(const QModelIndex& index, int role) const Q_DECL_FINAL;
-        int rowCount(const QModelIndex& parent = QModelIndex()) const Q_DECL_FINAL;
+        Q_INVOKABLE int rowCount(const QModelIndex& parent = QModelIndex()) const Q_DECL_FINAL;
         Q_INVOKABLE bool removeRows(int row, int count=1,
                 const QModelIndex& parent = QModelIndex()) Q_DECL_FINAL;
 
