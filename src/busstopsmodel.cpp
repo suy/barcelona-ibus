@@ -8,7 +8,7 @@ BusStopsModel::BusStopsModel(QObject *parent) :
         {"Vall d'Hebron, 60", "1019", "60"},
         {"Vall d'Hebron, 73", "1019", "73"},
         {"Rotonda de Bellesguard", "71", "60"},
-        {"Alfonso Comín", "0534", ""},
+        {"", "0534", ""},
         {"", "0534", "17"},
     };
 }

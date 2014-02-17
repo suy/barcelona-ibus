@@ -38,13 +38,9 @@ Page {
 				truncationMode: TruncationMode.Fade
 			}
 			onClicked: {
-				var url;
-				if (bus === undefined) {
-					url = stopUrl.arg(stop);
-				} else {
-					url = busUrl.arg(stop).arg(bus);
-				}
-				webPage.pageUrl = url;
+				webPage.pageUrl = bus?
+                    busUrl.arg(stop).arg(bus):
+                    stopUrl.arg(stop);
 				pageStack.navigateForward(PageStackAction.Animated);
 			}
 		}
