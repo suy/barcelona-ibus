@@ -90,3 +90,15 @@ void BusStopsModel::addDefaults()
     save();
     endInsertRows();
 }
+
+void BusStopsModel::addEntry(QString name, QString stop, QString bus)
+{
+    int firstAffected = m_stops.size();
+    m_stops += {
+        {name, stop, bus},
+    };
+    beginInsertRows(QModelIndex(), firstAffected, m_stops.size()-1);
+    save();
+    endInsertRows();
+}
+

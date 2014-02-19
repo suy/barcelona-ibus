@@ -29,7 +29,7 @@ Page {
 					);
 					dialog.accepted.connect(function() {
 						console.log("Adding", dialog.index, dialog.name, dialog.stop, dialog.bus);
-						// stopsModel.setRow(dialog.index, dialog.name, dialog.stop, dialog.bus);
+						stopsModel.addEntry(dialog.name, dialog.stop, dialog.bus);
 					});
 				}
 			}

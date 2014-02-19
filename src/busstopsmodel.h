@@ -30,6 +30,7 @@ class BusStopsModel : public QAbstractListModel
                 const QModelIndex& parent = QModelIndex()) Q_DECL_FINAL;
         Q_INVOKABLE void setRow(int row, QString name, QString stop, QString bus);
         Q_INVOKABLE void addDefaults();
+        Q_INVOKABLE void addEntry(QString name, QString stop, QString bus);
 
     private:
         void save();
