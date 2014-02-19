@@ -20,6 +20,25 @@ Page {
 			text: qsTr("Add bus stops from the menu")
 		}
 
+		PullDownMenu {
+			MenuItem {
+				text: qsTr("Add new entry")
+				onClicked: {
+					var dialog = pageStack.push("EditDialog.qml",
+						{"name": "", "stop": "", "bus": "", "index": -1}
+					);
+					dialog.accepted.connect(function() {
+						console.log("Adding", dialog.index, dialog.name, dialog.stop, dialog.bus);
+						// stopsModel.setRow(dialog.index, dialog.name, dialog.stop, dialog.bus);
+					});
+				}
+			}
+			MenuItem {
+				text: qsTr("Add default values")
+				onClicked: stopsModel.addDefaults();
+			}
+		}
+
 		delegate: ListItem {
 			id: listItem
 			// menu: contextMenuComponent

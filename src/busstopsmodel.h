@@ -29,6 +29,7 @@ class BusStopsModel : public QAbstractListModel
         Q_INVOKABLE bool removeRows(int row, int count=1,
                 const QModelIndex& parent = QModelIndex()) Q_DECL_FINAL;
         Q_INVOKABLE void setRow(int row, QString name, QString stop, QString bus);
+        Q_INVOKABLE void addDefaults();
 
     private:
         void save();

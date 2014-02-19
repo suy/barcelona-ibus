@@ -5,18 +5,6 @@
 BusStopsModel::BusStopsModel(QObject *parent) :
     QAbstractListModel(parent)
 {
-    // Some default values for testing
-    // m_stops = {
-    //     {"Vall d'Hebron", "1019", ""},
-    //     {"Vall d'Hebron, 60", "1019", "60"},
-    //     {"Vall d'Hebron, 73", "1019", "73"},
-    //     {"Rotonda de Bellesguard", "71", "60"},
-    //     {"", "0534", ""},
-    //     {"", "0534", "17"},
-    // };
-    // save();
-    // return;
-
     QSettings settings;
 
     int size = settings.beginReadArray("stops");
@@ -29,7 +17,6 @@ BusStopsModel::BusStopsModel(QObject *parent) :
         };
         m_stops.append(stop);
     }
-
 }
 
 QVariant BusStopsModel::data(const QModelIndex& index, int role) const
@@ -85,4 +72,21 @@ void BusStopsModel::save()
         settings.setValue("bus",  m_stops.at(i).bus);
     }
     settings.endArray();
+}
+
+void BusStopsModel::addDefaults()
+{
+    // Some default values for testing
+    int firstAffected = m_stops.size();
+    m_stops += {
+        {"Vall d'Hebron", "1019", ""},
+        {"Vall d'Hebron, 60", "1019", "60"},
+        {"Vall d'Hebron, 73", "1019", "73"},
+        {"Rotonda de Bellesguard", "71", "60"},
+        {"", "0534", ""},
+        {"", "0534", "17"},
+    };
+    beginInsertRows(QModelIndex(), firstAffected, m_stops.size()-1);
+    save();
+    endInsertRows();
 }
