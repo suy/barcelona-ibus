@@ -18,6 +18,7 @@ OTHER_FILES += qml/main.qml \
     qml/cover/CoverPage.qml \
     qml/pages/WebPage.qml \
     qml/pages/ChooserPage.qml \
+    qml/pages/EditDialog.qml \
     rpm/harbour-barcelona-ibus.spec \
     rpm/harbour-barcelona-ibus.yaml \
     harbour-barcelona-ibus.desktop

@@ -62,6 +62,18 @@ bool BusStopsModel::removeRows(int row, int count, const QModelIndex& parent)
     return true;
 }
 
+void BusStopsModel::setRow(int row, QString name, QString stop, QString bus)
+{
+    Q_ASSERT_X(m_stops.size() > row, Q_FUNC_INFO, "Row index too large");
+    m_stops[row].name = name;
+    m_stops[row].stop = stop;
+    m_stops[row].bus = bus;
+    save();
+
+    QVector<int> roles = {NameRole, BusRole, StopRole};
+    emit dataChanged(index(row), index(row), roles);
+}
+
 void BusStopsModel::save()
 {
     QSettings settings;

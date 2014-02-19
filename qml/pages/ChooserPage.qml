@@ -22,7 +22,28 @@ Page {
 
 		delegate: ListItem {
 			id: listItem
-			menu: contextMenuComponent
+			// menu: contextMenuComponent
+			menu: ContextMenu {
+				MenuItem {
+					text: qsTr("Edit")
+					onClicked: {
+						var dialog = pageStack.push("EditDialog.qml",
+							{"name": name, "stop": stop, "bus": bus, "index": index}
+						);
+						dialog.accepted.connect(function() {
+							stopsModel.setRow(dialog.index, dialog.name, dialog.stop, dialog.bus);
+						});
+					}
+				}
+				MenuItem {
+					text: qsTr("Delete")
+					onClicked: {
+						remorseAction(qsTr("Deleting"), function() {
+						stopsModel.removeRows(index);
+						}, 5000);
+					}
+				}
+			}
 			contentHeight: Theme.itemSizeMedium
 			ListView.onAdd:    AddAnimation    { target: listItem }
 			ListView.onRemove: RemoveAnimation { target: listItem }
@@ -45,26 +66,12 @@ Page {
 				pageStack.navigateForward(PageStackAction.Animated);
 			}
 
-			Component {
-				id: contextMenuComponent
-				ContextMenu {
-					MenuItem {
-						text: qsTr("Edit")
-					}
-					MenuItem {
-						text: qsTr("Delete")
-						onClicked: stopsModel.removeRows(index);
-						// Possible bug in Silica? Got "Cannot call method
-						// 'removeRows' of undefined", but only with timeouts.
-						// Immediately, the call succeeds.
-						// onClicked: {
-						//     remorseAction(qsTr("Deleting"), function() {
-						//         stopsModel.removeRows(index);
-						//     }, 500);
-						// }
-					}
-				}
-			}
+			// With the same contents as the inline context menu, it fails to
+			// find the id of the model, or the remorseAction fails strangely.
+			// Component {
+			// 	id: contextMenuComponent
+			// 	ContextMenu {}
+			// }
 		}
 	}
 }
