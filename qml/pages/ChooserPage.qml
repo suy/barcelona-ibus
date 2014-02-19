@@ -58,8 +58,8 @@ Page {
 					text: qsTr("Delete")
 					onClicked: {
 						remorseAction(qsTr("Deleting"), function() {
-						stopsModel.removeRows(index);
-						}, 5000);
+							stopsModel.removeRows(index);
+						}, 2000);
 					}
 				}
 			}
