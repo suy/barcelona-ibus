@@ -4,8 +4,8 @@ import My.BusStopsModel 0.1
 
 Page {
     id: page
-	property string stopUrl: "http://www.tmb.cat/mobile/pwtmb?action=ibus_parada&parada=%1"
-	property string busUrl:  "http://www.tmb.cat/mobile/pwtmb?action=info_parada&parada=%1&busNumber=%2"
+	property string stopUrl: "http://www.tmb.cat/mobile/ca/parada-bus/%1"
+	property string busUrl:  "http://www.tmb.cat/mobile/ca/parada-bus/%1#%2"
 
 	SilicaListView {
 		id: stopsList
